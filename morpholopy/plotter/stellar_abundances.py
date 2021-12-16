@@ -458,8 +458,8 @@ def plot_stellar_abundances(sim_info, output_path):
     
     bins = np.arange(-7.2, 1, 0.2)
     ind = np.digitize(Fe_H, bins)
-    xm = [np.median(Fe_H[ind == i]) for i in range(1, len(bins)) if len(Fe_H[ind == i]) > 10]
-    ym = [np.median(Mg_Fe[ind == i]) for i in range(1, len(bins)) if len(Mg_Fe[ind == i]) > 10]
+    xm = [np.median(Fe_H_sat[ind == i]) for i in range(1, len(bins)) if len(Fe_H_sat[ind == i]) > 10]
+    ym = [np.median(Mg_Fe_sat[ind == i]) for i in range(1, len(bins)) if len(Mg_Fe_sat[ind == i]) > 10]
     plt.plot(xm, ym, '-', lw=1.5, color='black')
 
     plt.text(-3.8,1.2,"Satellite galaxies")
