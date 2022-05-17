@@ -227,7 +227,7 @@ def plot_surface_densities(
         s=25,
         vmin=6,
         vmax=10,
-        cmap="CMRmap_r",
+        cmap="gnuplot_r",
         edgecolors="none",
         zorder=2,
     )
@@ -276,7 +276,7 @@ def plot_surface_densities(
         s=25,
         vmin=6,
         vmax=10,
-        cmap="CMRmap_r",
+        cmap="gnuplot_r",
         edgecolors="none",
         zorder=2,
     )
