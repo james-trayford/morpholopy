@@ -6,7 +6,7 @@ import numpy as np
 from matplotlib import cm as cmm
 from matplotlib.colors import ListedColormap
 
-top = cmm.get_cmap("CMRmap_r", 256)
+top = cmm.get_cmap("gnuplot_r", 256)
 newcolors = top(np.linspace(0.1, 0.9, 230))
 newcmp = ListedColormap(newcolors, name="custombar")
 
@@ -642,7 +642,7 @@ def plot_combined_surface_densities(
         s=5,
         vmin=-3,
         vmax=1,
-        cmap="CMRmap_r",
+        cmap="gnuplot_r",
         edgecolors="none",
         zorder=2,
         label="method:grid",
