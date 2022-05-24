@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import glob
 import numpy as np
 import matplotlib
+import os
 from matplotlib import gridspec
 from unyt import pc, kpc, msun, yr, Myr
 
@@ -90,8 +91,8 @@ def surface_densities_overview(sim_name, directory, snapshot, catalogue_file, ou
 
 
         snapshot_filename = directory + '/' + snapshot
-
-        catalogue_filename = glob.glob(directory+catalogue_file+'*')[0]
+        print(os.path.join(directory,catalogue_file+'*'))
+        catalogue_filename = glob.glob(os.path.join(directory,catalogue_file+'*'))[0]
         catalogue = load_catalogue(catalogue_filename)
         catalogue.masses.mass_star_30kpc.convert_to_units('Msun')
 
@@ -106,7 +107,7 @@ def surface_densities_overview(sim_name, directory, snapshot, catalogue_file, ou
         twelve_plus_logOH = np.log10(Zdiffuse / (Zsun * ColdGas)) + twelve_plus_log_OH_solar
 
         snapnum = "".join([s for s in snapshot if s.isdigit()])
-                              
+        print(len(halo_ids_sample))
         for ihalo, halo_id in enumerate(halo_ids_sample):
 
                 fig = plt.figure(figsize = (15., 3.5))

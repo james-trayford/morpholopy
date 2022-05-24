@@ -6,7 +6,9 @@ from argumentparser import ArgumentParser
 
 from plotter.plot_galaxy import visualize_galaxy
 from plotter.KS_relation import make_KS_plots, calculate_surface_densities
+from plotter.dust_relations import make_profile_plots
 from plotter.KS_comparison import make_comparison_plots
+from plotter.dust_relations import make_comparison_profile_plots
 from plotter.plot_morphology import write_morphology_data_to_file, plot_morphology
 from plotter.plot_surface_densities import plot_surface_densities
 from object import simulation_data
@@ -91,6 +93,16 @@ def compute_galaxy_morpholopy(
             sim_info.simulation_name,
             sim_info.combined_data,
         )
+
+        make_profile_plots(
+            gas_data,
+            stars_ang_momentum,
+            halo_counter,
+            output_path,
+            sim_info.simulation_name,
+            sim_info.combined_data,
+        )
+
 
     return
 
@@ -189,6 +201,12 @@ def main(config: ArgumentParser):
         name_list=output_name_list,
         num_of_galaxies_to_show=num_galaxies_to_show,
     )
+    make_comparison_profile_plots(
+        output_path=config.output_directory,
+        name_list=output_name_list,
+        num_of_galaxies_to_show=num_galaxies_to_show,
+    )
+
     plot_morphology(
         output_path=config.output_directory,
         name_list=output_name_list,

@@ -570,6 +570,17 @@ def loadGalaxyPlots(
         caption += " black solid line indicates the median relation and the shaded area the 84-16th percentiles, "
         PlotsInWeb.load_plots(title, caption, outfile, id)
 
+        title = "Surface density ratios (method: Azimuthal average)"
+        id = abs(hash("density ratio H2+HI radii %i" % (index)))
+        outfile = "Surface_density_ratio_radii_%i.png" % (index)
+        caption = "Surface density ratios. The y-axis shows the ratio between surface densities calculated"
+        caption += " by azimuthally averaging radial concentric shells of 800 pc of width. The shells were centered"
+        caption += " in the minimum of the dark matter potential."
+        caption += " The red dashed and dotted lines correspond to Krumholz+ (2009) semi-analytic model,"
+        caption += " black solid line indicates the median relation and the shaded area the 84-16th percentiles, "
+        PlotsInWeb.load_plots(title, caption, outfile, id)
+
+        
         title = "%i Galaxy " % (index + 1)
         caption = " "
         for name in name_list:

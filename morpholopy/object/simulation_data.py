@@ -204,7 +204,7 @@ class SimInfo(ParticleIds):
 
         gas_mass = self.snapshot.gas.masses[mask_gas].value * self.to_Msun_units
         gas_n_parts = len(gas_mass)
-        gas_data = np.zeros((gas_n_parts, 13))
+        gas_data = np.zeros((gas_n_parts, 17))
 
         gas_data[:, 0:3] = (
             self.snapshot.gas.coordinates[mask_gas].value * self.a * self.to_kpc_units
@@ -238,6 +238,20 @@ class SimInfo(ParticleIds):
             self.snapshot.gas.metal_mass_fractions[mask_gas].value / self.Zsolar
         )
 
+        # get dust mass fractions
+        gas_data[:, 13] = (
+            self.snapshot.gas.dust_mass_fractions.GraphiteLarge[mask_gas].value 
+        )
+        gas_data[:, 14] = (
+            self.snapshot.gas.dust_mass_fractions.SilicatesLarge[mask_gas].value 
+        )                
+        gas_data[:, 15] = (
+            self.snapshot.gas.dust_mass_fractions.GraphiteSmall[mask_gas].value 
+        )
+        gas_data[:, 16] = (
+            self.snapshot.gas.dust_mass_fractions.SilicatesSmall[mask_gas].value 
+        )
+        
         stars_mass = self.snapshot.stars.masses[mask_stars].value * self.to_Msun_units
         stars_birthz = (
             1.0 / self.snapshot.stars.birth_scale_factors[mask_stars].value - 1.0
@@ -413,7 +427,7 @@ class CombinedData:
         self.radii_neutral_gas_surface_density: np.ndarray = np.array([])
         self.radii_atomic_gas_surface_density: np.ndarray = np.array([])
         self.radii_molecular_gas_surface_density: np.ndarray = np.array([])
-
+        
         # SFR surface density (azimuthally-averaged)
         self.radii_SFR_surface_density: np.ndarray = np.array([])
 
@@ -424,3 +438,10 @@ class CombinedData:
 
         # H_2 to H_2 + HI ratio (azimuthally-averaged) 
         self.radii_H2_to_neutral_surface_density_ratio: np.ndarray = np.array([])
+
+        # abundance ratios (azimuthally-averaged) 
+        self.radii_metallicity_profile: np.ndarray = np.array([])
+        self.radii_dust_to_gas_profile: np.ndarray = np.array([])
+        self.radii_dust_to_metal_profile: np.ndarray = np.array([])
+        self.radii_small_to_large_dust_profile: np.ndarray = np.array([])
+        self.radii_gas_surface_density_profile: np.ndarray = np.array([])
