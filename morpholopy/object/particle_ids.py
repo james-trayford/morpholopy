@@ -63,10 +63,7 @@ class ParticleIds:
         )
 
         _, _, mask_gas = np.intersect1d(
-            particle_ids_in_halo,
-            self.gas_ids,
-            assume_unique=True,
-            return_indices=True,
+            particle_ids_in_halo, self.gas_ids, assume_unique=True, return_indices=True,
         )
 
         # Ensure that there are no negative indices

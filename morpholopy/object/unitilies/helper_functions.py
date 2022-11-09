@@ -52,8 +52,10 @@ def cosmic_time_approx_Gyr(
 
     return cosmic_times
 
+
 def calculate_r25(halo_data, partsDATA, star_abmags, box_size, halo_index):
     particlesDATA = np.array(partsDATA).copy()  # isolating a copy
+
 
 def calculate_kappa_co(halo_data, partsDATA, box_size, halo_index):
     # subhalo contain subhalo data and is strutured as follow

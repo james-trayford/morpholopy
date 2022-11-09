@@ -17,6 +17,7 @@ from .particle_ids import ParticleIds
 
 from swiftsimio import load
 
+
 class SimInfo(ParticleIds):
 
     # Solar metallicity
@@ -145,7 +146,7 @@ class SimInfo(ParticleIds):
         catalogue_particles_paths: List[str] = glob.glob(
             f"{self.directory}/*{catalogue_num}.catalog_particles*"
         )
-        
+
         # We expect one file for particle groups
         if len(catalogue_groups_paths) == 1:
             self.catalogue_groups = catalogue_groups_paths[0].split("/")[-1]
@@ -239,19 +240,19 @@ class SimInfo(ParticleIds):
         )
 
         # get dust mass fractions
-        gas_data[:, 13] = (
-            self.snapshot.gas.dust_mass_fractions.GraphiteLarge[mask_gas].value 
-        )
-        gas_data[:, 14] = (
-            self.snapshot.gas.dust_mass_fractions.SilicatesLarge[mask_gas].value 
-        )                
-        gas_data[:, 15] = (
-            self.snapshot.gas.dust_mass_fractions.GraphiteSmall[mask_gas].value 
-        )
-        gas_data[:, 16] = (
-            self.snapshot.gas.dust_mass_fractions.SilicatesSmall[mask_gas].value 
-        )
-        
+        gas_data[:, 13] = self.snapshot.gas.dust_mass_fractions.GraphiteLarge[
+            mask_gas
+        ].value
+        gas_data[:, 14] = self.snapshot.gas.dust_mass_fractions.SilicatesLarge[
+            mask_gas
+        ].value
+        gas_data[:, 15] = self.snapshot.gas.dust_mass_fractions.GraphiteSmall[
+            mask_gas
+        ].value
+        gas_data[:, 16] = self.snapshot.gas.dust_mass_fractions.SilicatesSmall[
+            mask_gas
+        ].value
+
         stars_mass = self.snapshot.stars.masses[mask_stars].value * self.to_Msun_units
         stars_birthz = (
             1.0 / self.snapshot.stars.birth_scale_factors[mask_stars].value - 1.0
@@ -417,17 +418,17 @@ class CombinedData:
         self.depletion_time_neutral_gas: np.ndarray = np.array([])
         self.depletion_time_atomic_gas: np.ndarray = np.array([])
 
-        # H_2 to H_2 + HI ratio (spatially-resolved) 
+        # H_2 to H_2 + HI ratio (spatially-resolved)
         self.H2_to_neutral_surface_density_ratio: np.ndarray = np.array([])
 
         # Metallicity map (spatially-resolved)
         self.gas_metallicity: np.ndarray = np.array([])
 
-        # Surface densities (azimuthally-averaged) 
+        # Surface densities (azimuthally-averaged)
         self.radii_neutral_gas_surface_density: np.ndarray = np.array([])
         self.radii_atomic_gas_surface_density: np.ndarray = np.array([])
         self.radii_molecular_gas_surface_density: np.ndarray = np.array([])
-        
+
         # SFR surface density (azimuthally-averaged)
         self.radii_SFR_surface_density: np.ndarray = np.array([])
 
@@ -436,10 +437,10 @@ class CombinedData:
         self.radii_depletion_time_neutral_gas: np.ndarray = np.array([])
         self.radii_depletion_time_atomic_gas: np.ndarray = np.array([])
 
-        # H_2 to H_2 + HI ratio (azimuthally-averaged) 
+        # H_2 to H_2 + HI ratio (azimuthally-averaged)
         self.radii_H2_to_neutral_surface_density_ratio: np.ndarray = np.array([])
 
-        # abundance ratios (azimuthally-averaged) 
+        # abundance ratios (azimuthally-averaged)
         self.radii_metallicity_profile: np.ndarray = np.array([])
         self.radii_dust_to_gas_profile: np.ndarray = np.array([])
         self.radii_dust_to_metal_profile: np.ndarray = np.array([])
