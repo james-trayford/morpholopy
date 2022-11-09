@@ -106,7 +106,7 @@ def surface_densities_overview(
 
     snapshot_filename = directory + "/" + snapshot
 
-    catalogue_filename = glob.glob(directory + catalogue_file + "*")[0]
+    catalogue_filename = glob.glob(directory + '/' + catalogue_file + "*")[0]
     catalogue = load_catalogue(catalogue_filename)
     catalogue.masses.mass_star_30kpc.convert_to_units("Msun")
 
